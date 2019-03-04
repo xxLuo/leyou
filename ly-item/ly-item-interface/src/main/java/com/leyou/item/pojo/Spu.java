@@ -1,0 +1,69 @@
+package com.leyou.item.pojo;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import tk.mybatis.mapper.annotation.KeySql;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author bystander
+ * @date 2018/9/18
+ */
+@Table(name = "tb_spu")
+@Data
+public class Spu {
+
+    @Id
+    @KeySql(useGeneratedKeys = true)
+    private Long id;
+    private String title;
+    private String subTitle;
+    private Long cid1;
+    private Long cid2;
+    private Long cid3;
+    private Long brandId;
+    private Boolean saleable;
+    private Boolean valid;
+    private Date createTime;
+
+    @JsonIgnore
+    private Date lastUpdateTime;
+
+
+    //spu所属的分类名称
+    @Transient
+    private String cname;
+
+    //spu所属品牌名
+    @Transient
+    private String bname;
+
+    //spu详情
+    @Transient
+    private SpuDetail spuDetail;
+
+    //sku集合
+    @Transient
+    private List<Sku> skus;
+
+    public Spu() {
+    }
+
+    public Spu(Long brandId, Long cid1, Long cid2, Long cid3, String title, String subTitle, Boolean saleable, Boolean valid, Date createTime, Date lastUpdateTime) {
+        this.brandId = brandId;
+        this.cid1 = cid1;
+        this.cid2 = cid2;
+        this.cid3 = cid3;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.saleable = saleable;
+        this.valid = valid;
+        this.createTime = createTime;
+        this.lastUpdateTime = lastUpdateTime;
+    }
+}

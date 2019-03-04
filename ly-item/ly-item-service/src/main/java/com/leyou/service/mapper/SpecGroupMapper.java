@@ -1,0 +1,12 @@
+package com.leyou.service.mapper;
+
+import com.leyou.item.pojo.SpecGroup;
+import tk.mybatis.mapper.common.Mapper;
+
+/**
+ * @author bystander
+ * @date 2018/9/18
+ */
+@org.apache.ibatis.annotations.Mapper
+public interface SpecGroupMapper extends Mapper<SpecGroup> {
+}
